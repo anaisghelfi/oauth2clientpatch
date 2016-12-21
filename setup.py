@@ -44,8 +44,8 @@ install_requires = [
 
 long_desc = """The oauth2client is a client library for OAuth 2.0."""
 
-import oauth2client
-version = oauth2client.__version__
+import oauth2clientpatch
+version = oauth2clientpatch.__version__
 
 setup(
     name="oauth2clientpatch",
