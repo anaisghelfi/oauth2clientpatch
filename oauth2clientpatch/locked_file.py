@@ -37,7 +37,7 @@ import logging
 import os
 import time
 
-from oauth2client import util
+from oauth2clientpatch import util
 
 
 __author__ = 'cache@google.com (David T McWherter)'

@@ -33,16 +33,16 @@ import six
 from six.moves import urllib
 
 import httplib2
-from oauth2client import GOOGLE_AUTH_URI
-from oauth2client import GOOGLE_DEVICE_URI
-from oauth2client import GOOGLE_REVOKE_URI
-from oauth2client import GOOGLE_TOKEN_URI
-from oauth2client import GOOGLE_TOKEN_INFO_URI
-from oauth2client._helpers import _from_bytes
-from oauth2client._helpers import _to_bytes
-from oauth2client._helpers import _urlsafe_b64decode
-from oauth2client import clientsecrets
-from oauth2client import util
+from oauth2clientpatch import GOOGLE_AUTH_URI
+from oauth2clientpatch import GOOGLE_DEVICE_URI
+from oauth2clientpatch import GOOGLE_REVOKE_URI
+from oauth2clientpatch import GOOGLE_TOKEN_URI
+from oauth2clientpatch import GOOGLE_TOKEN_INFO_URI
+from oauth2clientpatch._helpers import _from_bytes
+from oauth2clientpatch._helpers import _to_bytes
+from oauth2clientpatch._helpers import _urlsafe_b64decode
+from oauth2clientpatch import clientsecrets
+from oauth2clientpatch import util
 
 
 __author__ = 'jcgregorio@google.com (Joe Gregorio)'
@@ -50,7 +50,7 @@ __author__ = 'jcgregorio@google.com (Joe Gregorio)'
 HAS_OPENSSL = False
 HAS_CRYPTO = False
 try:
-    from oauth2client import crypt
+    from oauth2clientpatch import crypt
     HAS_CRYPTO = True
     if crypt.OpenSSLVerifier is not None:
         HAS_OPENSSL = True
@@ -362,7 +362,7 @@ class Storage(object):
         The Storage lock must be held when this is called.
 
         Returns:
-            oauth2client.client.Credentials
+            oauth2clientpatch.client.Credentials
         """
         _abstract()
 
@@ -389,7 +389,7 @@ class Storage(object):
         The Storage lock must *not* be held when this is called.
 
         Returns:
-            oauth2client.client.Credentials
+            oauth2clientpatch.client.Credentials
         """
         self.acquire_lock()
         try:
@@ -1147,7 +1147,7 @@ class GoogleCredentials(OAuth2Credentials):
     service that requires authentication::
 
         from googleapiclient.discovery import build
-        from oauth2client.client import GoogleCredentials
+        from oauth2clientpatch.client import GoogleCredentials
 
         credentials = GoogleCredentials.get_application_default()
         service = build('compute', 'v1', credentials=credentials)
@@ -1441,7 +1441,7 @@ def _get_well_known_file():
 def _get_application_default_credential_from_file(filename):
     """Build the Application Default Credentials from file."""
 
-    from oauth2client import service_account
+    from oauth2clientpatch import service_account
 
     # read the credentials from the file
     with open(filename) as file_obj:
@@ -1495,13 +1495,13 @@ def _raise_exception_for_reading_json(credential_file,
 
 
 def _get_application_default_credential_GAE():
-    from oauth2client.appengine import AppAssertionCredentials
+    from oauth2clientpatch.appengine import AppAssertionCredentials
 
     return AppAssertionCredentials([])
 
 
 def _get_application_default_credential_GCE():
-    from oauth2client.gce import AppAssertionCredentials
+    from oauth2clientpatch.gce import AppAssertionCredentials
 
     return AppAssertionCredentials([])
 
@@ -1573,7 +1573,7 @@ class AssertionCredentials(GoogleCredentials):
 def _RequireCryptoOrDie():
     """Ensure we have a crypto library, or throw CryptoUnavailableError.
 
-    The oauth2client.crypt module requires either PyCrypto or PyOpenSSL
+    The oauth2clientpatch.crypt module requires either PyCrypto or PyOpenSSL
     to be available in order to function, but these are optional
     dependencies.
     """
@@ -1701,7 +1701,7 @@ def verify_id_token(id_token, audience, http=None,
         The deserialized JSON in the JWT.
 
     Raises:
-        oauth2client.crypt.AppIdentityError: if the JWT fails to verify.
+        oauth2clientpatch.crypt.AppIdentityError: if the JWT fails to verify.
         CryptoUnavailableError: if no crypto library is available.
     """
     _RequireCryptoOrDie()

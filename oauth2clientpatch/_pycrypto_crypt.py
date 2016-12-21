@@ -11,16 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""pyCrypto Crypto-related routines for oauth2client."""
+"""pyCrypto Crypto-related routines for oauth2clientpatch."""
 
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
 from Crypto.Signature import PKCS1_v1_5
 from Crypto.Util.asn1 import DerSequence
 
-from oauth2client._helpers import _parse_pem_key
-from oauth2client._helpers import _to_bytes
-from oauth2client._helpers import _urlsafe_b64decode
+from oauth2clientpatch._helpers import _parse_pem_key
+from oauth2clientpatch._helpers import _to_bytes
+from oauth2clientpatch._helpers import _urlsafe_b64decode
 
 
 class PyCryptoVerifier(object):

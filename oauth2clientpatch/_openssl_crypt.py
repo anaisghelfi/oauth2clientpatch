@@ -11,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""OpenSSL Crypto-related routines for oauth2client."""
+"""OpenSSL Crypto-related routines for oauth2clientpatch."""
 
 import base64
 
 from OpenSSL import crypto
 
-from oauth2client._helpers import _parse_pem_key
-from oauth2client._helpers import _to_bytes
+from oauth2clientpatch._helpers import _parse_pem_key
+from oauth2clientpatch._helpers import _to_bytes
 
 
 class OpenSSLVerifier(object):

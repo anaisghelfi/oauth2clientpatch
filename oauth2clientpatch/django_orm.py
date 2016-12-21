@@ -18,14 +18,14 @@ Utilities for using OAuth 2.0 in conjunction with
 the Django datastore.
 """
 
-import oauth2client
+import oauth2clientpatch
 import base64
 import pickle
 import six
 
 from django.db import models
 from django.utils.encoding import smart_bytes, smart_text
-from oauth2client.client import Storage as BaseStorage
+from oauth2clientpatch.client import Storage as BaseStorage
 
 
 __author__ = 'jcgregorio@google.com (Joe Gregorio)'
@@ -44,7 +44,7 @@ class CredentialsField(six.with_metaclass(models.SubfieldBase, models.Field)):
     def to_python(self, value):
         if value is None:
             return None
-        if isinstance(value, oauth2client.client.Credentials):
+        if isinstance(value, oauth2clientpatch.client.Credentials):
             return value
         return pickle.loads(base64.b64decode(smart_bytes(value)))
 
@@ -81,7 +81,7 @@ class FlowField(six.with_metaclass(models.SubfieldBase, models.Field)):
     def to_python(self, value):
         if value is None:
             return None
-        if isinstance(value, oauth2client.client.Flow):
+        if isinstance(value, oauth2clientpatch.client.Flow):
             return value
         return pickle.loads(base64.b64decode(value))
 
@@ -133,7 +133,7 @@ class Storage(BaseStorage):
         """Retrieve stored credential.
 
         Returns:
-            oauth2client.Credentials
+            oauth2clientpatch.Credentials
         """
         credential = None
 

@@ -29,7 +29,7 @@ apiui/credential>`__.
 
 .. code-block:: python
 
-    from oauth2client.flask_util import UserOAuth2
+    from oauth2clientpatch.flask_util import UserOAuth2
 
     app = Flask(__name__)
 
@@ -159,7 +159,7 @@ session and to use https whenever handling user credentials.
 
 If you need the credentials to be available longer than a user session or
 available outside of a request context, you will need to implement your own
-:class:`oauth2client.Storage`.
+:class:`oauth2clientpatch.Storage`.
 """
 
 import hashlib
@@ -182,11 +182,11 @@ try:
 except ImportError:  # pragma: NO COVER
     raise ImportError('The flask utilities require flask 0.9 or newer.')
 
-from oauth2client.client import FlowExchangeError
-from oauth2client.client import OAuth2Credentials
-from oauth2client.client import OAuth2WebServerFlow
-from oauth2client.client import Storage
-from oauth2client import clientsecrets
+from oauth2clientpatch.client import FlowExchangeError
+from oauth2clientpatch.client import OAuth2Credentials
+from oauth2clientpatch.client import OAuth2WebServerFlow
+from oauth2clientpatch.client import Storage
+from oauth2clientpatch import clientsecrets
 
 
 __author__ = 'jonwayne@google.com (Jon Wayne Parrott)'
@@ -252,7 +252,7 @@ class UserOAuth2(object):
                 GOOGLE_OAUTH2_CLIENT_SECRET config value.
             authorize_callback: A function that is executed after successful
                 user authorization.
-            storage: A oauth2client.client.Storage subclass for storing the
+            storage: A oauth2clientpatch.client.Storage subclass for storing the
                 credentials. By default, this is a Flask session based storage.
             kwargs: Any additional args are passed along to the Flow
                 constructor.

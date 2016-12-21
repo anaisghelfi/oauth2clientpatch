@@ -24,13 +24,13 @@ from pyasn1.codec.ber import decoder
 from pyasn1_modules.rfc5208 import PrivateKeyInfo
 import rsa
 
-from oauth2client import GOOGLE_REVOKE_URI
-from oauth2client import GOOGLE_TOKEN_URI
-from oauth2client._helpers import _json_encode
-from oauth2client._helpers import _to_bytes
-from oauth2client._helpers import _urlsafe_b64encode
-from oauth2client import util
-from oauth2client.client import AssertionCredentials
+from oauth2clientpatch import GOOGLE_REVOKE_URI
+from oauth2clientpatch import GOOGLE_TOKEN_URI
+from oauth2clientpatch._helpers import _json_encode
+from oauth2clientpatch._helpers import _to_bytes
+from oauth2clientpatch._helpers import _urlsafe_b64encode
+from oauth2clientpatch import util
+from oauth2clientpatch.client import AssertionCredentials
 
 
 class _ServiceAccountCredentials(AssertionCredentials):

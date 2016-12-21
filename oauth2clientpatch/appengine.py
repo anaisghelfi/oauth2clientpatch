@@ -33,18 +33,18 @@ from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext.webapp.util import login_required
 
-from oauth2client import GOOGLE_AUTH_URI
-from oauth2client import GOOGLE_REVOKE_URI
-from oauth2client import GOOGLE_TOKEN_URI
-from oauth2client import clientsecrets
-from oauth2client import util
-from oauth2client import xsrfutil
-from oauth2client.client import AccessTokenRefreshError
-from oauth2client.client import AssertionCredentials
-from oauth2client.client import Credentials
-from oauth2client.client import Flow
-from oauth2client.client import OAuth2WebServerFlow
-from oauth2client.client import Storage
+from oauth2clientpatch import GOOGLE_AUTH_URI
+from oauth2clientpatch import GOOGLE_REVOKE_URI
+from oauth2clientpatch import GOOGLE_TOKEN_URI
+from oauth2clientpatch import clientsecrets
+from oauth2clientpatch import util
+from oauth2clientpatch import xsrfutil
+from oauth2clientpatch.client import AccessTokenRefreshError
+from oauth2clientpatch.client import AssertionCredentials
+from oauth2clientpatch.client import Credentials
+from oauth2clientpatch.client import Flow
+from oauth2clientpatch.client import OAuth2WebServerFlow
+from oauth2clientpatch.client import Storage
 
 # TODO(dhermes): Resolve import issue.
 # This is a temporary fix for a Google internal issue.
@@ -58,7 +58,7 @@ __author__ = 'jcgregorio@google.com (Joe Gregorio)'
 
 logger = logging.getLogger(__name__)
 
-OAUTH2CLIENT_NAMESPACE = 'oauth2client#ns'
+oauth2clientpatch_NAMESPACE = 'oauth2clientpatch#ns'
 
 XSRF_MEMCACHE_ID = 'xsrf_secret_key'
 
@@ -124,7 +124,7 @@ def xsrf_secret_key():
     Returns:
         The secret key.
     """
-    secret = memcache.get(XSRF_MEMCACHE_ID, namespace=OAUTH2CLIENT_NAMESPACE)
+    secret = memcache.get(XSRF_MEMCACHE_ID, namespace=oauth2clientpatch_NAMESPACE)
     if not secret:
         # Load the one and only instance of SiteXsrfSecretKey.
         model = SiteXsrfSecretKey.get_or_insert(key_name='site')
@@ -133,7 +133,7 @@ def xsrf_secret_key():
             model.put()
         secret = model.secret
         memcache.add(XSRF_MEMCACHE_ID, secret,
-                     namespace=OAUTH2CLIENT_NAMESPACE)
+                     namespace=oauth2clientpatch_NAMESPACE)
 
     return str(secret)
 
@@ -215,7 +215,7 @@ class FlowProperty(db.Property):
     """App Engine datastore Property for Flow.
 
     Utility property that allows easy storage and retrieval of an
-    oauth2client.Flow
+    oauth2clientpatch.Flow
     """
 
     # Tell what the user type is.
@@ -254,7 +254,7 @@ if ndb is not None:
         DB case.
 
         Utility property that allows easy storage and retrieval of an
-        oauth2client.Flow
+        oauth2clientpatch.Flow
         """
 
         def _validate(self, value):
@@ -468,7 +468,7 @@ class StorageByKeyName(Storage):
         """Retrieve Credential from datastore.
 
         Returns:
-            oauth2client.Credentials
+            oauth2clientpatch.Credentials
         """
         credentials = None
         if self._cache:

@@ -21,8 +21,8 @@ credentials.
 import os
 import threading
 
-from oauth2client.client import Credentials
-from oauth2client.client import Storage as BaseStorage
+from oauth2clientpatch.client import Credentials
+from oauth2clientpatch.client import Storage as BaseStorage
 
 
 __author__ = 'jcgregorio@google.com (Joe Gregorio)'
@@ -63,7 +63,7 @@ class Storage(BaseStorage):
         """Retrieve Credential from file.
 
         Returns:
-            oauth2client.client.Credentials
+            oauth2clientpatch.client.Credentials
 
         Raises:
             CredentialsFileSymbolicLinkError if the file is a symbolic link.

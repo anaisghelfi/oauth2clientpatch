@@ -13,17 +13,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Crypto-related routines for oauth2client."""
+"""Crypto-related routines for oauth2clientpatch."""
 
 import json
 import logging
 import time
 
-from oauth2client._helpers import _from_bytes
-from oauth2client._helpers import _json_encode
-from oauth2client._helpers import _to_bytes
-from oauth2client._helpers import _urlsafe_b64decode
-from oauth2client._helpers import _urlsafe_b64encode
+from oauth2clientpatch._helpers import _from_bytes
+from oauth2clientpatch._helpers import _json_encode
+from oauth2clientpatch._helpers import _to_bytes
+from oauth2clientpatch._helpers import _urlsafe_b64decode
+from oauth2clientpatch._helpers import _urlsafe_b64encode
 
 
 CLOCK_SKEW_SECS = 300  # 5 minutes in seconds
@@ -42,17 +42,17 @@ def _bad_pkcs12_key_as_pem(*args, **kwargs):
 
 
 try:
-    from oauth2client._openssl_crypt import OpenSSLVerifier
-    from oauth2client._openssl_crypt import OpenSSLSigner
-    from oauth2client._openssl_crypt import pkcs12_key_as_pem
+    from oauth2clientpatch._openssl_crypt import OpenSSLVerifier
+    from oauth2clientpatch._openssl_crypt import OpenSSLSigner
+    from oauth2clientpatch._openssl_crypt import pkcs12_key_as_pem
 except ImportError:  # pragma: NO COVER
     OpenSSLVerifier = None
     OpenSSLSigner = None
     pkcs12_key_as_pem = _bad_pkcs12_key_as_pem
 
 try:
-    from oauth2client._pycrypto_crypt import PyCryptoVerifier
-    from oauth2client._pycrypto_crypt import PyCryptoSigner
+    from oauth2clientpatch._pycrypto_crypt import PyCryptoVerifier
+    from oauth2clientpatch._pycrypto_crypt import PyCryptoSigner
 except ImportError:  # pragma: NO COVER
     PyCryptoVerifier = None
     PyCryptoSigner = None

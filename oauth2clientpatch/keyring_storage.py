@@ -21,8 +21,8 @@ import threading
 
 import keyring
 
-from oauth2client.client import Credentials
-from oauth2client.client import Storage as BaseStorage
+from oauth2clientpatch.client import Credentials
+from oauth2clientpatch.client import Storage as BaseStorage
 
 
 __author__ = 'jcgregorio@google.com (Joe Gregorio)'
@@ -33,8 +33,8 @@ class Storage(BaseStorage):
 
     To use this module you must have the keyring module installed. See
     <http://pypi.python.org/pypi/keyring/>. This is an optional module and is
-    not installed with oauth2client by default because it does not work on all
-    the platforms that oauth2client supports, such as Google App Engine.
+    not installed with oauth2clientpatch by default because it does not work on all
+    the platforms that oauth2clientpatch supports, such as Google App Engine.
 
     The keyring module <http://pypi.python.org/pypi/keyring/> is a
     cross-platform library for access the keyring capabilities of the local
@@ -44,7 +44,7 @@ class Storage(BaseStorage):
 
     Usage::
 
-        from oauth2client.keyring_storage import Storage
+        from oauth2clientpatch.keyring_storage import Storage
 
         s = Storage('name_of_application', 'user1')
         credentials = s.get()
@@ -82,7 +82,7 @@ class Storage(BaseStorage):
         """Retrieve Credential from file.
 
         Returns:
-            oauth2client.client.Credentials
+            oauth2clientpatch.client.Credentials
         """
         credentials = None
         content = keyring.get_password(self._service_name, self._user_name)

@@ -18,8 +18,8 @@ import json
 import os
 import socket
 
-from oauth2client._helpers import _to_bytes
-from oauth2client import client
+from oauth2clientpatch._helpers import _to_bytes
+from oauth2clientpatch import client
 
 DEVSHELL_ENV = 'DEVSHELL_CLIENT_PORT'
 

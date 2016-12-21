@@ -159,7 +159,7 @@ def loadfile(filename, cache=None):
         JSON contents is validated only during first load. Cache hits are not
         validated.
     """
-    _SECRET_NAMESPACE = 'oauth2client:secrets#ns'
+    _SECRET_NAMESPACE = 'oauth2clientpatch:secrets#ns'
 
     if not cache:
         return _loadfile(filename)

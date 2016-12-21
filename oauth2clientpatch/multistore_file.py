@@ -50,10 +50,10 @@ import logging
 import os
 import threading
 
-from oauth2client.client import Credentials
-from oauth2client.client import Storage as BaseStorage
-from oauth2client import util
-from oauth2client.locked_file import LockedFile
+from oauth2clientpatch.client import Credentials
+from oauth2clientpatch.client import Storage as BaseStorage
+from oauth2clientpatch import util
+from oauth2clientpatch.locked_file import LockedFile
 
 
 __author__ = 'jbeda@google.com (Joe Beda)'
@@ -238,7 +238,7 @@ class _MultiStore(object):
             The Storage lock must be held when this is called.
 
             Returns:
-                oauth2client.client.Credentials
+                oauth2clientpatch.client.Credentials
             """
             credential = self._multistore._get_credential(self._key)
             if credential:
