@@ -20,8 +20,8 @@ import binascii
 import hmac
 import time
 
-from oauth2client._helpers import _to_bytes
-from oauth2client import util
+from oauth2clientpatch._helpers import _to_bytes
+from oauth2clientpatch import util
 
 __authors__ = [
     '"Doug Coker" <dcoker@google.com>',
