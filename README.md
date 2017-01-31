@@ -3,6 +3,8 @@
 [![Documentation Status](https://readthedocs.org/projects/oauth2client/badge/?version=latest)](http://oauth2client.readthedocs.org/)
 
 This is a client library for accessing resources protected by OAuth 2.0.
+This lib is a old version of the OAuth lib to clone for AdWords project.
+
 
 Installation
 ============
